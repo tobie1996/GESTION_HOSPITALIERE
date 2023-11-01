@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <title>Rendez-vous</title>
+	    <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	    <!----css3---->
+        <link rel="stylesheet"  href="css/custom.css">
+	
+		<!--google fonts -->
+	    <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+	
+	
+	   <!--google material icon-->
+      <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
+      <link rel="stylesheet" href="../../public/animation.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  </head>
+  <body>
+  
+<div class="wrapper">
+     
+	  <div class="body-overlay"></div>
+	 
+	 <!-------sidebar--design------------>
+	 
+	 <div class="wrapper">
+     
+	  <div class="body-overlay"></div>
+	 
+	 <!-------sidebar--design------------>
+	 
+	 <div id="sidebar">
+    <div class="sidebar-header">
+      <img src="../img/log2.png" class="img-fluid rounded" style="height: 50px;"/><span>
+  </div>
+  <ul class="list-unstyled component m-0">
+    <li class="active">
+    <a href="index_medecin" class="dashboard"><i class="material-icons">dashboard</i>Accueil </a>
+    </li>		    
+    <li class="">
+      <a href="medecin_notification" class="">
+        <i class="material-icons">notifications</i> notification
+      </a>
+    </li>
+    <li class="">          
+      <a href="patients" class="">            
+        <i class="material-icons">person</i>
+        Mes Patients     
+      </a>       
+    </li>
+      <li class="">          
+        <a href="rendez-vous" class="">            
+          <i class="material-icons">calendar_today</i>
+          Révisions    
+        </a>       
+      </li>
+      <li class="">          
+        <a href="resultat" class="">            
+          <i class="material-icons">functions</i>
+          Résultats      
+        </a>       
+      </li>
+      <li class="">
+        <a href="soin" class="">
+          <i class="material-icons">local_hospital</i>           
+          Hospitalisation
+        </a>
+      </li>
+      <li class=""> 
+        <a href="message" class="">
+          <i class="material-icons">message</i>Messages
+        </a> 
+      </li>
+  </ul>
+ </div>
+	 
+   <!-------sidebar--design- close----------->
+   
+   
+   
+   
+      <!-------page-content start----------->
+   
+      <div id="content">
+	   	  <!------top-navbar-start-----------> 
+		     
+         <div class="top-navbar" >
+          <div class="xd-topbar">
+            <div class="row">
+              <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+               <div class="xp-menubar">
+                 <span class="material-icons text-white">signal_cellular_alt</span>
+             </div>
+            </div>
+            
+            <div class="col-md-5 col-lg-3 order-3 order-md-2">
+                
+            </div>
+            
+            
+            <div class="col-10 col-md-6 col-lg-8 order-1 order-md-3">
+                <div class="xp-profilebar text-right">
+                 <nav class="navbar p-0">
+                  <ul class="nav navbar-nav flex-row ml-auto">
+                  
+                  </ul>
+               </nav>
+              </div>
+            </div>
+          </div>
+          
+          <div class="xp-breadcrumbbar text-center">
+             <h4 class="page-title">REVISION</h4>
+           <ol class="breadcrumb">
+             <li class="breadcrumb-item"><a href="#">PATIENT</a></li>
+             <li class="breadcrumb-item active" aria-curent="page">Rappels</li>
+           </ol>
+          </div>
+          
+          
+        </div>
+       </div>	  
+		  
+		   <!------main-content-start-----------> 
+		     
+		      <div class="main-content">
+			     <div class="row">
+				    <div class="col-md-12">
+					   <div class="table-wrapper">
+					     
+					   <div class="table-title">
+					     <div class="row">
+						     <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
+							    <h2 class="ml-lg-2"></h2>
+							 </div>
+							 <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center" >
+                
+                <a href="#addDossier" class="btn btn-outline-primary" data-toggle="modal">
+                  <i class="material-icons"></i>
+                  <span></span>
+                </a>
+              </div>
+					     </div>
+					   </div>
+					   
+					   <div class="container">
+
+              <!----  Start  reciproque ----->	
+                <% revisions.forEach((revisions, index) => { %>
+                  <button style="height: 40px"  class="btn btn-outline-dark btn-block text-left mt-2" type="button" data-toggle="collapse" data-target="#collapsetwo<%= index %>" aria-expanded="false" aria-controls="collapsetwo<%= index %>">
+                  <%= revisions.nom %>
+                  <span class="fas fa-chevron-down float-right" aria-hidden="true"></span>
+                  </button>
+                  <div id="collapsetwo<%= index %>" class="collapse">
+                  <div class="card card-body">
+                  <ul>
+                  
+                    <li>
+                      <label class="text-info">Prescription :</label>
+                      <p name="medicament"><%= revisions.medicament %></p>
+                    </li>
+      
+                    <li>
+                      <label class="text-info">Rendez-vous :</label>
+                      <p name="rendez"><%= revisions.rendez %></p>
+                    </li>
+                    <li>
+                      <label class="text-info">Portable :</label>
+                      <p name="tel"><%= revisions.tel %></p>
+                    </li>
+                    
+      
+                  </ul>
+                    <a href="#modifossiertmodal<%= revisions.id %>" class="modifier" data-toggle="modal">
+                      <span style="display: flex; justify-content: flex-end;" >
+                        <i class="fas fa-edit" style="color: rgb(49, 7, 126); font-size: 30px;"></i>
+                      </span>
+                    </a>
+                  </div>
+                  </div>
+                  <br>
+                  <% }) %>  
+      
+                  <!----  envoyer un rapel ----->	 
+      
+                  <% for (let i=0; i<revisions.length; i++) { %>
+                    <div class="modal fade" id="modifossiertmodal<%= revisions[i].id %>" tabindex="-1" role="dialog" aria-labelledby="mymodallabel" aria-hidden="true">
+                      <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                          <div class="modal-header bg-dark">
+                            <h5 class="modal-title text-white" id="mymodallabel">Prescription et rendez-vous avec Mr/Mme <%= revisions[i].nom %></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                              <span aria-hidden="true">×
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form method="post" action="/edit11/<%= revisions[i].id %>">
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <label for="id" class="text-danger">numero dossier</label>
+                                  <input type="text" class="form-control" id="id" name="id" value="<%= revisions[i].id %>" readonly>
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="tel" class="text-danger">Portable</label>
+                                  <input type="text" class="form-control" id="tel" name="tel" value="<%= revisions[i].tel %>">
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="email" class="text-success">Adresse email</label>
+                                  <input type="text" class="form-control" id="email" name="email" value="<%= revisions[i].email %>" readonly>
+                                </div>
+                                <div class="col-md-6">
+                                  <label class="text-success">Docteur</label>
+                                  <input type="text" class="form-control"  value="service médical" readonly>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                  <label for="medicament" class="text-success">Prescription</label>
+                                  <textarea class="form-control" id="medicament" name="medicament" rows="8" cols="50"><%= revisions[i].medicament %></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="rendez" class="text-success">Rendez-vous</label>
+                                  <textarea class="form-control" id="rendez" name="rendez" rows="8" cols="50"><%= revisions[i].rendez %></textarea>                          </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">fermer</button>
+                                <button type="submit" id="btnenregistrer" class="btn btn-primary">sauvegarder</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <% } %>
+  <!----  fin un rapel ----->	 
+  
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+  
+    <!-- annimer fenetre -->
+	<script type="text/javascript">
+		$(document).ready(function(){
+		   $(".xp-menubar").on('click',function(){
+			 $("#sidebar").toggleClass('active');
+			 $("#content").toggleClass('active');
+		   });
+		   
+		   $('.xp-menubar,.body-overlay').on('click',function(){
+			  $("#sidebar,.body-overlay").toggleClass('show-nav');
+		   });		   
+		});
+   </script>
+
+ <script>
+  
+// Fonction pour générer un matricule automatique pour patient
+function genererMatricule() {
+  // Générer un nombre aléatoire compris entre 10000 et 99999
+  var randomNum = Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;
+  
+  // Récupérer l'élément d'entrée du matricule
+  var matriculeInput = document.getElementById("id");
+  
+  // Assigner le matricule généré à la valeur de l'entrée
+  matriculeInput.value = randomNum;
+}
+
+// Événement déclenché lors de l'ouverture du modal ajout patient
+$('#addPatient').on('shown.bs.modal', function () {
+  // Appeler la fonction pour générer le matricule automatique
+  genererMatricule();
+});
+ </script>
+
+ <script>
+  // Fonction pour actualiser la page automatiquement
+  function actualiserPage() {
+     window.location.reload();
+  }
+
+  // Enregistrer la fonction dans le cache de l'historique
+  window.onpageshow = function(event) {
+     if (event.persisted) {
+        actualiserPage();
+     }
+  };
+</script>
+
+<script>
+  $('#admin_dossier').on('show.bs.modal', function () {
+    var valueModal1 = $('#id').val();
+    $('#inputModal2').val(valueModal1);
+  });
+</script>
+
+  </body>
+  </html>
+
+

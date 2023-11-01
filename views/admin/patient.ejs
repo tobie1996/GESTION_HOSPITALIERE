@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <title>Admission patient</title>
+	    <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	    <!----css3---->
+        <link rel="stylesheet"  href="css/custom.css">
+	
+		<!--google fonts -->
+	    <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+	
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+	   <!--google material icon-->
+      <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
+      <link rel="stylesheet" href="../../public/animation.css">
+
+  </head>
+  <body>
+  
+<div class="wrapper">
+     
+	  <div class="body-overlay"></div>
+	 
+	 <!-------sidebar--design------------>
+	 
+	 <div id="sidebar">
+    <div class="sidebar-header">
+      <img src="../img/log2.png" class="img-fluid rounded" style="height: 50px;"/><span>
+    </div>
+  <ul class="list-unstyled component m-0">
+    <li class="active">
+    <a href="index_admin" class="dashboard"><i class="material-icons">dashboard</i>Tableau de bord</a>
+    </li>	
+    <li class="">
+      <a href="admin_medecin" class="">
+        <i class="material-icons">medical_services</i>Medecin
+      </a>
+    </li>
+    <li class="">
+      <a href="admin_patient" class="">
+          <i class="material-icons">person</i>Patient
+      </a>
+  </li>
+    <li class="">          
+      <a href="admin_infirmiere" class="">            
+         <i class="material-icons">local_hospital</i>Infirmier         
+      </a>       
+   </li> 
+   <li class="">
+      
+    <a href="admin_notification" class="">
+      <i class="material-icons">notifications</i><span class="notification text-bg-danger"><%= notifications.length %></span></span> notifications
+      <span class="notification" style="border-radius: 100%;"></span>
+    </a>
+  </li>
+    <li class="">          
+        <a href="admin_dossier" class="">            
+          <i class="material-icons">folder_open</i>
+          dossier médical         
+        </a>       
+    </li>
+    <li class="">
+      <a href="index_service" class="">
+        <i class="material-icons">hotel</i>Infrastructure
+      </a>
+    </li>
+    <li class="">          
+      <a href="admin_parametres" class="">            
+        <i class="material-icons">settings</i>Paramètres         
+      </a>       
+    </li> 
+  </ul>
+ </div>
+   <!-------sidebar--design- close----------->
+   
+   
+   
+      <!-------page-content start----------->
+   
+      <div id="content">
+	   	  <!------top-navbar-start-----------> 
+		     
+         <div class="top-navbar" >
+          <div class="xd-topbar">
+            <div class="row">
+              <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+               <div class="xp-menubar">
+                 <span class="material-icons text-white">signal_cellular_alt</span>
+             </div>
+            </div>
+            
+            <div class="col-md-5 col-lg-3 order-3 order-md-2">
+                
+            </div>
+            
+            
+            <div class="col-10 col-md-6 col-lg-8 order-1 order-md-3">
+                <div class="xp-profilebar text-right">
+                 <nav class="navbar p-0">
+                  <ul class="nav navbar-nav flex-row ml-auto">
+                  <li class="dropdown nav-item active">
+                    <a class="nav-link" href="#" data-toggle="dropdown">+
+                   <span class="material-icons">notifications</span>
+                   <span class="notification" style="border-radius: 100%;"><%= notifications.length %></span>                
+
+                  </a>
+                  <ul class="dropdown-menu">
+                    <% notifications.forEach(notification => { %>
+                      <li><a href="admin_notification"><%= notification.message %></a></li>
+                    <% }) %>
+                   </ul>
+                  </li>
+                  </ul>
+               </nav>
+              </div>
+            </div>
+          </div>
+          
+          <div class="xp-breadcrumbbar text-center">
+             <h4 class="page-title" style="color: yellow;">ADMISSION PATIENTS</h4>
+           <ol class="breadcrumb">
+             <li class="breadcrumb-item"><a href="#">Gestion patients</a></li>
+             <li class="breadcrumb-item active" aria-curent="page">Admission</li>
+           </ol>
+          </div>
+          
+          
+        </div>
+       </div>	  
+		  
+		   <!------main-content-start-----------> 
+		     
+		      <div class="main-content">
+			     <div class="row">
+				    <div class="col-md-12">
+					   <div class="table-wrapper">
+					     
+					   <div class="table-title">
+					     <div class="row">
+						     <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
+							 </div>
+							 <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center" >
+                <a href="#addPatient" class="btn btn-outline-success" data-toggle="modal">
+                <i class="material-icons">&#xE147;</i>
+                <span>Ajouter un Patient</span>
+                </a>
+                <a href="admin_dossier" class="btn btn-outline-primary">
+                  <i class="material-icons">visibility</i>
+                  <span>Consulter dossiers</span>
+                </a>
+              </div>
+					     </div>
+					   </div>
+					   
+					   <table class="table table-striped table-hover">
+					      <thead>
+						     <tr>
+							 <th><span class="custom-checkbox">
+							 <input type="checkbox" id="selectAll">
+							 <label for="selectAll"></label></th>
+							 <th><strong >NumDossier</strong></th>
+							 <th><strong>Noms</strong></th>
+							 <th><strong>DateNaiss</strong></th>
+							 <th><strong>Sexe</strong></th>
+							 <th><strong>Tel</strong></th>
+               <th><strong>CNI</strong></th>
+               <th><strong>Service</strong></th>
+               <th><strong>email</strong></th>
+               <th colspan="text-danger"> <strong>Actions</strong> </th>
+							 </tr>
+						  </thead>
+						  
+						  <tbody>
+                <% if (patient && patient.length > 0) { %>
+                  <% patient.forEach((patient) => { %>
+						  <tr>
+                <td><span class="custom-checkbox">
+                <input type="checkbox" id="checkbox1" name="option[]" value="1">
+                <label for="checkbox1"></label>
+                </td>
+                
+                <td class="text-danger"><%= patient.id %></td>               
+                <td><%= patient.nom %></td>
+                <td><%= patient.datenaiss %></td>
+                <td><%= patient.sexe %></td>
+                <td><%= patient.tel %></td>
+                <td><%= patient.cni %></td>
+                <td><%= patient.service %></td>	
+                <td ><%= patient.email %></td>	
+            		 <!---- pour le bouton --------->	
+							 <td>
+                <a href="#editPatientModal<%= patient.id %>" class="edit" data-toggle="modal">
+                  <i class="material-icons" style="color: blue;" data-toggle="tooltip" title="Modifier les informations">&#xE254;</i>
+                  </a>
+
+                  <a href="#deletePatientModal<%= patient.id %>" class="delete" data-toggle="modal">
+                    <i class="material-icons "style="color: red;" data-toggle="tooltip" title="Supprimer le patient">&#xE872;</i>
+                  </a>
+
+                  <a href="#addossiertmodal<%= patient.id %>" class="add" data-toggle="modal">
+                    <i class="material-icons" style="color: green;" data-toggle="tooltip" title="Ajouter un dossier médical"></i>
+                  </a>
+
+
+               </td>
+              </tr>
+                   <!---- modifier patient --------->	 
+                <div class="modal fade" id="editPatientModal<%= patient.id %>" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="editUserModalLabel">Modifier le patient <%= patient.nom %></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                          <span aria-hidden="true">×
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form method="POST" action="/edit/<%= patient.id %>">
+                          <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="nom">Nom du patient:</label>
+                              <input type="text" class="form-control" id="nom" name="nom"  value="<%= patient.nom %>">
+                            </div>
+                      <div class="form-group col-md-6">
+                        <label for="tel">Sexe:</label>
+                      <select class="custom-select" id="sexe" name="sexe">
+                        <option selected><%= patient.sexe %></option>
+                        <option value="M">M</option>
+                        <option value="F">F</option>
+                      </select>
+                       </div>
+                      <div class="form-group col-md-6">
+                        <label for="cni">Numéro de CNI:</label>
+                        <input type="text" class="form-control" id="cni" name="cni"  value="<%= patient.cni %>">
+                      </div>
+                
+                      <div class="form-group col-md-6">
+                        <label for="datenaiss">Date Naissance:</label>
+                      <input type="date" id="datenaiss" name="datenaiss" class="form-control" value="<%= patient.datenaiss %>">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="tel">Service hospitalier:</label>
+                        <select class="custom-select" id="service" name="service">
+                        <option selected >Service</option>
+                        <% services.forEach(function(nom_service) { %>
+                        <option ><%= nom_service %></option>
+                        <% }); %>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="tel">Numéro de Téléphone:</label>
+                              <input type="text" class="form-control" id="tel"  name="tel"  value="<%= patient.tel %>">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="email">Adress email:</label>
+                              <input type="email" class="form-control" id="email"  name="email"  value="<%= patient.email %>">
+                      </div>
+                          
+                      <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                          </div>
+                        </form>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+                <!----fin modifier patient--------->
+                    <% }) %>
+      <% } else { %>
+        <tr>
+          <td colspan="2">aucun résultat trouvé.</td>
+        </tr>
+      <% } %>
+
+              
+              </tbody>
+                            
+          </table>
+
+  
+
+
+    
+					
+  <!---- start Add-patient --------->	 
+  <div class="modal fade" id="addPatient" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-dark text-center">
+          <h5 class="modal-title text-white " id="addUserModalLabel">Ajouter un Nouveau Patient</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+            <span aria-hidden="true">×
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" action="/add">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="id">Matricule</label>
+                <input type="text" class="form-control" id="id" name="id" readonly>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="nom">Nom du patient</label>
+                <input type="text" class="form-control" id="nom" name="nom">
+              </div>
+        <div class="form-group col-md-6">
+          <label for="tel">Entrer le sexe</label>
+        <select class="custom-select" id="sexe" name="sexe">
+          <option selected>Sexe</option>
+          <option value="M">M</option>
+          <option value="F">F</option>
+        </select>
+         </div>
+        <div class="form-group col-md-6">
+          <label for="cni">Numéro de CNI</label>
+                <input type="text" class="form-control" id="cni" name="cni">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="email">Adresse email</label>
+                  <input type="email" class="form-control" id="email" name="email">
+            </div>
+  
+        <div class="form-group col-md-6">
+          <label for="date">Date Naissance</label>
+        <input type="date" id="datenaiss" name="datenaiss" class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="date">Service medical</label>
+          <select class="custom-select" id="service" name="service">
+          <option selected >Service</option>
+          <% services.forEach(function(nom_service) { %>
+          <option ><%= nom_service %></option>
+          <% }); %>
+          </select>
+        </div>    
+        <div class="form-group col-md-6">
+          <label for="tel">Portable</label>
+            <input type="tel" class="form-control" id="tel"  name="tel">
+          </div>
+        </div>
+            <div class="modal-footer bg-dark">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+              <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#admin_dossier" >Enregistrer</button>
+            </div>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <!----end add-modal end--------->	 
+
+
+	 <!----  supprimer un patient --------->
+<% for (let i=0; i<patient.length; i++) { %>
+<div class="modal fade" tabindex="-1" id="deletePatientModal<%= patient[i].id %>" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Supprimer le patient <%= patient[i].nom %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Êtes-vous sûr(e) que vous voulez supprimer cet enregistrement ?</p>
+      <p class="text-warning"><small>Cette action peut être annulée,</small></p>
+      </div>
+      <form method="POST" action="/delete/<%= patient[i].id %>">
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Annuler</button>
+          <button type="submit" class="btn btn-danger">Supprimer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<% } %>
+	 <!----  fin supprimer un patient --------->
+
+   
+
+<!----  creer un dosssier ----->	 
+<% for (let i=0; i<patient.length; i++) { %>
+<div class="modal fade" id="addossiertmodal<%= patient[i].id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header bg-dark">
+        <h5 class="modal-title text-white" id="myModalLabel">Création du dossier Médical</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="addossier">
+        <div class="row">  
+          
+          <div class="col-md-4">
+            <label for="id" class="text-danger">Numero dossier</label>
+            <input type="text" class="form-control" id="id"  name="id"  value="<%= patient[i].id %>" readonly>
+          </div>
+          <div class="col-md-4">
+            <label for="nom" class="text-dark">Non et prénom</label>
+            <input type="text" class="form-control" id="nom"  name="nom"  value="<%= patient[i].nom %>" readonly>
+          </div> 
+          <div class="col-md-4">
+            <label for="email" class="text-dark">adresse email</label>
+            <input type="email" class="form-control" id="email"  name="email"  value="<%= patient[i].email %>" readonly>
+          </div> 
+          <div class="col-md-4">
+            <label for="tel" class="text-dark">Portable</label>
+            <input type="tel" class="form-control" id="tel"  name="tel"  value="<%= patient[i].tel %>" readonly>
+          </div> 
+          <div class="col-md-4">
+            <label for="service" class="text-dark">Service médical</label>
+            <input type="text" class="form-control" id="service"  name="service"  value="<%= patient[i].service %>" readonly>
+          </div> 
+
+          <div class="col-md-4">
+            <label for="motif">Motif d'Admission:</label>
+          <select class="custom-select" id="motif" name="motif">
+            <option selected>Selectionner...</option>
+            <option value="Suivi">Suivi</option>
+            <option value="Hospitalisation">Hospitalisation</option>
+          </select>
+           </div>
+
+          <div class="col-md-4">
+            <label for="diagnostique" class="text-dark">Diagnostique</label>
+            <textarea class="form-control"  type="text" id="diagnostique" name="diagnostique" readonly>Reservé au médecin</textarea>
+          </div>
+          <div class="col-md-4">
+            <label for="etat_sortie" class="text-dark">Etat de sortie du patient</label>
+            <textarea class="form-control"  type="text" id="etat_sortie" name="etat_sortie"readonly>Reservé au médecin</textarea>
+          </div>
+
+          <div class="col-md-4">
+            <label for="date_admis" class="text-dark">date admission</label>
+            <input type="date" id="date_admis" name="date_admis" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <label for="date_sortie" class="text-dark">date sortie</label>
+            <input type="date" id="date_sortie" name="date_sortie" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <label for="salle" class="text-dark">Salle</label>
+            <select class="custom-select" id="salle" name="salle">
+            <option selected>Sélectionner...</option>
+                <% salles.forEach(function(numero) { %>
+                    <option><%= numero %></option>
+                <% }); %>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label for="lit" class="text-dark">Lit</label>
+            <select class="custom-select" id="lit" name="lit">
+            <option selected>Sélectionner...</option>
+                <% lits.forEach(function(numero) { %>
+                    <option><%= numero %></option>
+                <% }); %>
+            </select>
+          </div>
+    
+          <div class="col-md-4">
+            <label for="medecin" class="text-dark">médecin</label>
+            <select class="custom-select" id="medecin" name="medecin">
+                <option selected>Sélectionner...</option>
+                <% medecins.forEach(function(nom) { %>
+                    <option><%= nom %></option>
+                <% }); %>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label for="infirmier" class="text-dark">Infirmier</label>
+            <select class="custom-select" id="infirmier" name="infirmier">
+                <option selected>Sélectionner...</option>
+                <% infirmieres.forEach(function(nom) { %>
+                    <option><%= nom %></option>
+                <% }); %>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label for="garde" class="text-dark">gade malade</label>
+            <select class="custom-select" id="garde" name="garde">
+                <option selected>sélectionner...</option>
+                <% gardes.forEach(function(nom) { %>
+                    <option><%= nom %></option>
+                <% }); %>
+            </select>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button"  class="btn btn-danger" data-dismiss="modal">Fermer</button>
+        <button type="submit" id="btnEnregistrer" class="btn btn-primary">Enregistrer</button>
+      </div>
+
+    </form>
+    </div>
+  </div>
+</div>
+</div>
+<% } %>
+  <!----  fin creer un dosssier --------->
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+  
+    <!-- annimer fenetre -->
+	<script type="text/javascript">
+		$(document).ready(function(){
+		   $(".xp-menubar").on('click',function(){
+			 $("#sidebar").toggleClass('active');
+			 $("#content").toggleClass('active');
+		   });
+		   
+		   $('.xp-menubar,.body-overlay').on('click',function(){
+			  $("#sidebar,.body-overlay").toggleClass('show-nav');
+		   });		   
+		});
+   </script>
+
+ <script>
+  
+// Fonction pour générer un matricule automatique pour patient
+function genererMatricule() {
+  // Générer un nombre aléatoire compris entre 10000 et 99999
+  var randomNum = Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;
+  
+  // Récupérer l'élément d'entrée du matricule
+  var matriculeInput = document.getElementById("id");
+  
+  // Assigner le matricule généré à la valeur de l'entrée
+  matriculeInput.value = randomNum;
+}
+
+// Événement déclenché lors de l'ouverture du modal ajout patient
+$('#addPatient').on('shown.bs.modal', function () {
+  // Appeler la fonction pour générer le matricule automatique
+  genererMatricule();
+});
+ </script>
+
+ <script>
+  // Fonction pour actualiser la page automatiquement
+  function actualiserPage() {
+     window.location.reload();
+  }
+
+  // Enregistrer la fonction dans le cache de l'historique
+  window.onpageshow = function(event) {
+     if (event.persisted) {
+        actualiserPage();
+     }
+  };
+</script>
+
+<script>
+  $('#admin_dossier').on('show.bs.modal', function () {
+    var valueModal1 = $('#id').val();
+    $('#inputModal2').val(valueModal1);
+  });
+</script>
+
+  </body>
+  </html>
+
+

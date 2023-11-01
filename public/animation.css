@@ -1,0 +1,29 @@
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .carte {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .my-card:hover{
+    transform: scale(1.1);
+    transition: 0.2s ease-in-out;
+}
+
+
+.modifier {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+
+
+
+  
+  

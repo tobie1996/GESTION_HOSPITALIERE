@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <title>Admission patient</title>
+	    <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	    <!----css3---->
+        <link rel="stylesheet"  href="css/custom.css">
+	
+		<!--google fonts -->
+	    <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+	
+	
+	   <!--google material icon-->
+      <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
+
+  </head>
+  <body>
+  
+<div class="wrapper">
+     
+	  <div class="body-overlay"></div>
+	 
+	 <!-------sidebar--design------------>
+	 
+	 <div id="sidebar">
+    <div class="sidebar-header">
+      <img src="../img/log2.png" class="img-fluid rounded" style="height: 50px;"/><span>
+  </div>
+  <ul class="list-unstyled component m-0">
+    <li class="active">
+    <a href="index_patient" class="dashboard"><i class="material-icons">dashboard</i>Accueil </a>
+    </li>
+    <li class="">          
+      <a href="Resultats" class="">            
+        <i class="material-icons">functions</i>
+        Résultats      
+      </a>       
+    </li>		
+    <li class="">          
+      <a href="action_message" class="">            
+        <i class="material-icons">message</i>
+        Actions      
+      </a>       
+    </li>	    
+    <li class="">          
+      <a href="rendez" class="">            
+        <i class="material-icons">calendar_today</i>
+        Révisions    
+      </a>       
+    </li>
+    <li class="">
+      <a href="notification" class="">
+        <i class="material-icons">notifications</i> notification
+      </a>
+    </li>
+  </ul>
+ </div>
+	 
+   <!-------sidebar--design- close----------->
+   
+   
+<style>
+  #content {
+    background-image: url('img/fond4.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 700px;
+    animation: zoom-in-out 10s infinite alternate;
+  }
+  
+  @keyframes zoom-in-out {
+    0%   { background-size: 100% auto; }
+    25%   { background-size: 100% auto; }
+    40%   { background-size: 100% auto; }
+    60%  { background-size: 120% auto; }
+    100% { background-size: 100% auto; }
+  }
+  </style>
+  
+      <!-------page-content start----------->
+   
+      <div id="content">
+	   	  <!------top-navbar-start-----------> 
+		     
+         <div class="top-navbar">
+          <div class="xd-topbar">
+            <div class="row">
+              <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+               <div class="xp-menubar">
+                 <span class="material-icons text-white">signal_cellular_alt</span>
+             </div>
+            </div>
+            
+            <div class="col-md-5 col-lg-3 order-3 order-md-2">
+               
+            </div>
+            
+            
+            <div class="col-10 col-md-6 col-lg-8 order-1 order-md-3">
+                <div class="xp-profilebar text-right">
+                 <nav class="navbar p-0">
+                  <ul class="nav navbar-nav flex-row ml-auto">
+                  
+                  <li class="dropdown nav-item">
+                    <a class="nav-link" href="#" data-toggle="dropdown">
+                   <img src="img/user.jpg" style="width:40px; border-radius:50%;"/>
+                   <span class="xp-user-live"></span>
+                  </a>
+                   <ul class="dropdown-menu small-menu">
+                    <% resultat.forEach((resultat, index) => { %>
+                      <li><a href="#">
+                    <span class="material-icons">person_outline</span>
+                    <%= resultat.nom %>
+                    </a></li>
+                    <% }) %>
+                    <li><a href="index_login">
+                    <span class="material-icons">logout</span>
+                    déconnexion
+                    </a></li>
+                    
+                   </ul>
+                  </li>
+                  </ul>
+               </nav>
+              </div>
+            </div>
+          </div>
+          
+          <div class="xp-breadcrumbbar text-center">
+             <h4 class="page-title">ESPACE PATIENT</h4>
+           <ol class="breadcrumb">
+            <% resultat.forEach((resultat, index) => { %>
+             <li style="background-color: rgb(9, 156, 214);" ><a href="#"><%= resultat.nom %></a></li>
+             <% }) %>
+            
+           </ol>
+          </div>
+        </div>
+      </div>
+		  
+        
+      
+
+        <!----footer-design------------->
+        <footer class="footer" style=" position: fixed;bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px;">
+          <div class="container-fluid">
+            <div class="footer-in">
+              <p class="mb-0">© 2023 cenadi. tous droits réservés.</p>
+            </div>
+          </div>
+        </footer>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+  
+    <!-- annimer fenetre -->
+	<script type="text/javascript">
+		$(document).ready(function(){
+		   $(".xp-menubar").on('click',function(){
+			 $("#sidebar").toggleClass('active');
+			 $("#content").toggleClass('active');
+		   });
+		   
+		   $('.xp-menubar,.body-overlay').on('click',function(){
+			  $("#sidebar,.body-overlay").toggleClass('show-nav');
+		   });		   
+		});
+   </script>
+  </body>
+  </html>
+
+

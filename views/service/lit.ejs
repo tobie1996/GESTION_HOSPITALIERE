@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <title>Admission patient</title>
+	    <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	    <!----css3---->
+        <link rel="stylesheet"  href="css/custom.css">
+	
+		<!--google fonts -->
+	    <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+	
+	
+	   <!--google material icon-->
+      <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
+
+  </head>
+  <body>
+  
+<div class="wrapper">
+     
+	  <div class="body-overlay"></div>
+	 
+	 <!-------sidebar--design------------>
+	 
+	 <div id="sidebar">
+    <div class="sidebar-header">
+      <img src="../img/log2.png" class="img-fluid rounded" style="height: 50px;"/><span>
+  </div>
+  <ul class="list-unstyled component m-0">
+    <li class="active">
+    <a href="index_service" class="dashboard"><i class="material-icons">dashboard</i>Accueil </a>
+    </li>		    
+    <li class=""> 
+      <a href="service_service" class="">
+        <i class="material-icons">medical_services</i>Service
+      </a> 
+    </li>
+    <li class="">
+      <a href="service_lit" class="">
+        <i class="material-icons">bed</i> Lit
+      </a>
+    </li>
+    <li class="">
+      <a href="service_salle" class="">
+        <i class="material-icons">meeting_room</i>Salle Malade
+      </a>
+    </li>
+     <li class="">
+      <a href="service_garde" class="">
+        <i class="material-icons">person</i>Garde Malade
+      </a>
+    </li>
+    <li>
+      <a href="index_admin" class="">
+      <i class="material-icons">highlight_off</i>
+      quitter
+      </a>
+   </li>
+  </ul>
+ </div>
+	 
+   <!-------sidebar--design- close----------->
+   
+   
+   
+   
+      <!-------page-content start----------->
+   
+      <div id="content">
+	   	  <!------top-navbar-start-----------> 
+		     
+         <div class="top-navbar">
+          <div class="xd-topbar">
+            <div class="row">
+              <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+               <div class="xp-menubar">
+                 <span class="material-icons text-white">signal_cellular_alt</span>
+             </div>
+            </div>
+            
+            <div class="col-md-5 col-lg-3 order-3 order-md-2">
+               
+            </div>
+            
+            
+            <div class="col-10 col-md-6 col-lg-8 order-1 order-md-3">
+                <div class="xp-profilebar text-right">
+                 <nav class="navbar p-0">
+                  <ul class="nav navbar-nav flex-row ml-auto">
+                  
+                  <li class="dropdown nav-item">
+                   
+                   <ul class="dropdown-menu small-menu">
+                      <li><a href="#">
+                    <span class="material-icons">person_outline</span>
+                    Profile
+                    </a></li>
+                    <li><a href="#">
+                    <span class="material-icons">settings</span>
+                    Settings
+                    </a></li>
+                    <li><a href="#">
+                    <span class="material-icons">logout</span>
+                    Logout
+                    </a></li>
+                    
+                   </ul>
+                  </li>
+                  </ul>
+               </nav>
+              </div>
+            </div>
+          </div>
+          
+          <div class="xp-breadcrumbbar text-center">
+             <h4 class="page-title"  style="color: yellow;">GESTION LITS</h4>
+           <ol class="breadcrumb">
+             <li class="breadcrumb-item"><a href="#">INFIRMIER</a></li>
+             <li class="breadcrumb-item active" aria-curent="page">SERVICE</li>
+           </ol>
+          </div>        
+        </div> 
+    </div> 
+ 
+
+    <div class="main-content">
+      <div class="row">
+       <div class="col-md-12">
+        <div class="table-wrapper">
+          
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
+             <h2 class="ml-lg-2"></h2>
+          </div>
+          <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
+           <a href="#addlit" class="btn btn-success" data-toggle="modal">
+           <i class="material-icons">&#xE147;</i>
+           <span>Ajouter un lit</span>
+           </a>
+         </div>
+          </div>
+        </div>
+  
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th><span class="custom-checkbox">
+              <input type="checkbox" id="selectAll">
+              <label for="selectAll"></label></th>
+              <th>IDENTIFIANT</th>
+              <th>NUMERO LIT</th>
+              <th>ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% for (let i=0; i<lit.length; i++) { %>
+          <tr>
+            <td><span class="custom-checkbox">
+                <input type="checkbox" id="checkbox1" name="option[]" value="1">
+               <label for="checkbox1"></label>
+                </td>
+                    <td><%= lit[i].id %></td>
+                    <td><%= lit[i].numero %></td>                               			 
+                <td>
+                <a href="#editLitModal<%= lit[i].id %>" class="edit" data-toggle="modal">
+                 <i class="material-icons" style="color: blue;" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                </a>
+                <a href="#deleteLit<%= lit[i].id %>"  style="color: red;"class="delete" data-toggle="modal">
+                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                </a>
+                </td>
+               </tr>
+                   <!---- start edit-modal --------->	 
+                <div class="modal fade" id="editLitModal<%= lit[i].id %>" tabindex="-1"  aria-labelledby="editUserModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header bg-dark">
+                        <h5 class="modal-title text-white" id="editUserModalLabel">Modifier la Salle</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                          <span aria-hidden="true">x
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form method="POST" action="/edit7/<%= lit[i].id %>">
+                          <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="nom">Modifier</label>
+                              <input type="text" class="form-control" id="numero" name="numero"  value="<%= lit[i].numero %>">
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Quitter</button>
+                            <button type="submit" class="btn btn-primary">Modifier</button>
+                          </div>
+                        </form>
+                      </div>                      
+                    </div>
+                  </div>
+                </div>
+                <!----edit-modal end--------->
+              <% } %>
+              </tbody>                           
+          </table>
+  
+          <% for (let i=0; i<lit.length; i++) { %>
+            <!----delete-modal start--------->
+            <div class="modal fade" tabindex="-1" id="deleteLit<%= lit[i].id %>" role="dialog">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Supprimer le Lit numero <%= lit[i].numero %></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Êtes-vous sûr(e) que vous voulez supprimer cet enregistrement ?</p>
+                  <p class="text-warning"><small>Cette action peut être annulée,</small></p>
+                  </div>
+                  <form method="POST" action="/delete7/<%= lit[i].id %>">
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" data-dismiss="modal">Annuler</button>
+                      <button type="submit" class="btn btn-danger">Supprimer</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <% } %>
+            
+  <!---- start Add-modal --------->	 
+
+  <div class="modal fade" id="addlit" tabindex="4" aria-labelledby="addusermodallabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="addusermodallabel">ajouter un lit</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="fermer">
+            <span aria-hidden="true">x
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="/add7">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="numero">numero du lit</label>
+                <input type="text" class="form-control" id="numero" name="numero">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">fermer</button>
+              <button type="submit" class="btn btn-primary">enregistrer</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+
+
+<!----footer-design------------->
+<!----footer-design------------->
+		 
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+  
+    <!-- annimer fenetre -->
+	<script type="text/javascript">
+		$(document).ready(function(){
+		   $(".xp-menubar").on('click',function(){
+			 $("#sidebar").toggleClass('active');
+			 $("#content").toggleClass('active');
+		   });
+		   
+		   $('.xp-menubar,.body-overlay').on('click',function(){
+			  $("#sidebar,.body-overlay").toggleClass('show-nav');
+		   });		   
+		});
+   </script>
+  </body>
+  </html>
+
+
