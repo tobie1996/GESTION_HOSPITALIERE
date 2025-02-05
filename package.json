@@ -14,6 +14,7 @@
     "body-parser": "^1.20.2",
     "bootstrap": "^5.3.0",
     "bootstrap4": "^0.0.1-security",
+    "dotenv": "^16.4.7",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-flash": "^0.0.2",
@@ -25,7 +26,7 @@
     "nodemailer": "^6.9.3",
     "nodemon": "^2.0.22",
     "passport": "^0.6.0",
-    "pg": "^8.11.1",
+    "pg": "^8.13.1",
     "pm2": "^5.1.0",
     "twilio": "^4.13.0"
   },
