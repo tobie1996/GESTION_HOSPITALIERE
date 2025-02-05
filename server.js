@@ -612,7 +612,7 @@ app.get("/notification", (req, res) => {
 // elle permet egalement de supprimer les notification lu sur la bare grace à un update lu=true
 
 // a) notifications vers l'administrateur
-app.get("/index_admin", async (req, res) => {
+app.get("/", async (req, res) => {
   // notif vers index_admin
   pool.query(
     "SELECT * FROM infirmiere ORDER BY id ASC",
