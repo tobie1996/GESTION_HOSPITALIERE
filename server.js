@@ -1724,7 +1724,152 @@ app.post('/search2', async (req, res) => {
 });
 
 
-/// ENVOI MESSAGE AU MEDECIN
+/// ENVOI MESSAGE AU MEDECINIONS
+
+async function migrateDatabase() {
+  const client = await pool.connect();
+  
+  const query = `
+    CREATE TABLE IF NOT EXISTS public.admission (
+      id TEXT PRIMARY KEY,
+      nom TEXT,
+      motif TEXT,
+      diagnostique TEXT,
+      date_admis TEXT,
+      date_sortie TEXT,
+      etat_sortie TEXT,
+      medecin TEXT,
+      infirmier TEXT,
+      salle TEXT,
+      lit TEXT,
+      garde TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS public.garde (
+      id BIGSERIAL PRIMARY KEY,
+      nom TEXT,
+      prenom TEXT,
+      lien TEXT,
+      adresse TEXT,
+      tel TEXT,
+      date_debut TEXT,
+      date_fin TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS public.infirmiere (
+      id BIGSERIAL PRIMARY KEY,
+      nom TEXT,
+      prenom TEXT,
+      portable TEXT,
+      email TEXT,
+      photo BYTEA
+    );
+
+    CREATE TABLE IF NOT EXISTS public.lit (
+      id BIGSERIAL PRIMARY KEY,
+      numero TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS public.medecin (
+      id SERIAL PRIMARY KEY,
+      nom TEXT,
+      specialite TEXT,
+      tel TEXT,
+      email TEXT,
+      adresse TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS public.notifications (
+      id BIGSERIAL PRIMARY KEY,
+      message TEXT,
+      lu BOOLEAN,
+      date TIMESTAMP,
+      nom TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS public.patient (
+      id TEXT PRIMARY KEY,
+      nom TEXT,
+      datenaiss TEXT,
+      sexe TEXT,
+      tel TEXT,
+      cni TEXT,
+      service TEXT,
+      email TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS public.resultat (
+      id TEXT PRIMARY KEY,
+      nom TEXT,
+      resultat_analyse TEXT,
+      resultat_radio TEXT,
+      email TEXT,
+      tel TEXT,
+      medecin TEXT,
+      service TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS public.revisions (
+      id TEXT PRIMARY KEY,
+      nom TEXT,
+      medicament TEXT,
+      rendez TEXT,
+      email TEXT,
+      tel TEXT,
+      medecin TEXT,
+      service TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS public.salle (
+      id BIGSERIAL PRIMARY KEY,
+      numero TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS public.service (
+      id BIGSERIAL PRIMARY KEY,
+      nom_service TEXT,
+      description TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS public.soin (
+      id TEXT PRIMARY KEY,
+      nom TEXT,
+      soin TEXT,
+      salle TEXT,
+      lit TEXT,
+      infirmier TEXT,
+      medecin TEXT,
+      motif TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS public.users (
+      id BIGSERIAL PRIMARY KEY,
+      email TEXT,
+      password TEXT,
+      nom TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS public.users1 (
+      id BIGSERIAL PRIMARY KEY,
+      email TEXT,
+      password TEXT,
+      nom TEXT
+    );
+  `;
+
+  try {
+    await client.query(query);
+    console.log("Tables migrées avec succès !");
+  } catch (error) {
+    console.error("Erreur lors de la migration :", error);
+  } finally {
+    client.release();
+  }
+}
+
+// Lancer la migration lors du démarrage du serveur
+migrateDatabase();
+
 
 
 app.listen(4000, function () {

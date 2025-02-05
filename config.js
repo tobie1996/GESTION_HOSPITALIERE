@@ -5,6 +5,6 @@ const pool = new Pool({
     password: 'postgres',
     host: 'localhost',
     port: 5432,
-    database: 'HOSPITAL'
+    database: 'HOSPITALS'
   });
   module.exports = pool; // pour exporter les configuration de la 
